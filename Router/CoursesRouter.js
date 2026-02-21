@@ -1,5 +1,5 @@
 import express from "express";
-import { getAssignedCourses } from "../Controller/CourseController.js";
+import { getAllCourses, getAssignedCourses } from "../Controller/CourseController.js";
 import { Protected as authMiddleware } from "../Middleware/AuthProtected.js";
 import roleMiddleware from "../Middleware/RoleMiddleware.js";
 
@@ -11,6 +11,11 @@ CourseRouter.get(
   authMiddleware,
   roleMiddleware(["teacher"]),
   getAssignedCourses
+);
+
+CourseRouter.get(
+  "/courses",
+  getAllCourses
 );
 
 export default CourseRouter;

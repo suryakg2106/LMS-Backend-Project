@@ -161,4 +161,24 @@ export const getAssignedCourses = async (req, res) => {
 };
 
 
+//All Course 
+export const getAllCourses = async (req, res) => {
+  try {
+    const courses = await Course.find();
+
+    res.status(200).json({
+      success: true,
+      count: courses.length,
+      data: courses,
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch courses",
+    });
+  }
+};
+
 
