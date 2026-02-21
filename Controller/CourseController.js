@@ -182,3 +182,34 @@ export const getAllCourses = async (req, res) => {
 };
 
 
+
+// Course Details
+export const CourseDetais = async (req, res) => {
+  try {
+    const { id } = req.params;   // courseId from URL
+
+    const course = await Course.findById(id);
+
+    if (!course) {
+      return res.status(404).json({
+        success: false,
+        message: "Course not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Course details fetched successfully",
+      course,
+    });
+
+  } catch (error) {
+    console.error("Course Details Error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
+};
+
+
