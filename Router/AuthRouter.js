@@ -19,7 +19,7 @@ Router.post("/login",[
 
 
 // routes/auth.js
-router.get("/me", authMiddleware, (req, res) => {
+Router.get("/me", authMiddleware, (req, res) => {
   res.status(200).json({
     user: {
       id: req.user.id,
