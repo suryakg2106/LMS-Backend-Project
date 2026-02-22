@@ -74,10 +74,11 @@ export const Login = async (req, res) => {
 
     const token = GenarateToken(user._id);
 
-    res.cookie("token", token, {
+     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: true,      // REQUIRED on Render / HTTPS
+      sameSite: "none",  // REQUIRED for cross-site
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     res.json({
