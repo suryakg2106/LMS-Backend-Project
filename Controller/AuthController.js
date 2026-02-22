@@ -91,3 +91,22 @@ export const Login = async (req, res) => {
     res.status(500).json({ msg: error.message });
   }
 };
+
+//Logout 
+export const Logout = (req, res) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,      // Render / production
+      sameSite: "none",  // frontend different domain হলে
+    });
+
+    return res.status(200).json({
+      message: "Logout successful",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Logout failed",
+    });
+  }
+};

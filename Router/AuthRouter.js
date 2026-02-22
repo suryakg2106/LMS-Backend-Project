@@ -1,5 +1,5 @@
 import express from "express"
-import { Register , Login } from "../Controller/AuthController.js";
+import { Register , Login, Logout } from "../Controller/AuthController.js";
 import { body } from "express-validator";
 import  {Protected} from "../Middleware/AuthProtected.js";
 
@@ -16,6 +16,9 @@ Router.post("/login",[
     body('email').notEmpty().withMessage('email is required'),
     body('password').notEmpty().withMessage('password is required'),
 ],Login);
+
+//Logout
+Router.post("/logout", Protected, Logout);
 
 
 // routes/auth.js
